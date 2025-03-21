@@ -1,5 +1,7 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Search, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 
 const SearchBar = ({ onSearch, initialQuery = '' }) => {
   const [query, setQuery] = useState(initialQuery);

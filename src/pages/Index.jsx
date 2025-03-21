@@ -64,6 +64,7 @@ const Index = () => {
     
     try {
       const data = await searchRecipes(query, page, resultsPerPage);
+      console.log("Search results:", data);
       setRecipes(data.results);
       setTotalResults(data.totalResults);
     } catch (err) {
