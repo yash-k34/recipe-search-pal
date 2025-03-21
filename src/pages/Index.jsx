@@ -21,25 +21,20 @@ const Index = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Parse query parameters from URL
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get('q') || ''; // Default to empty string if no query
+    const query = searchParams.get('q') || '';
     const page = parseInt(searchParams.get('page') || '1', 10);
-    
-    console.log("Parsed query and page from URL:", { query, page }); // Debugging log
 
     setSearchQuery(query);
     setCurrentPage(page);
     performSearch(query, page);
   }, [location.search]);
   
-  const handleSearch = (query) => {
-    console.log("handleSearch called with query:", query); // Debugging log
-    
+  const handleSearch = (query) => {    
     if (query.trim()) {
       setCurrentPage(1);
-      setSearchQuery(query); // Ensure state is updated
+      setSearchQuery(query);
       updateSearchParams(query, 1);
     }
   };
@@ -50,7 +45,6 @@ const Index = () => {
   };
   
   const updateSearchParams = (query, page) => {
-    console.log("Updating search params:", { query, page }); // Debugging log
     const params = new URLSearchParams();
     params.set('q', query);
     params.set('page', page.toString());
@@ -62,16 +56,13 @@ const Index = () => {
     setError(null);
     
     try {
-      console.log("Performing search with query:", query); // Debugging log
       const data = await searchRecipes(query, page, resultsPerPage);
 
-      // Show all recipes if the query is empty
       setRecipes(data.results);
       setTotalResults(data.totalResults);
-      setShowIntro(!query.trim()); // Show intro if query is empty
+      setShowIntro(!query.trim());
     } catch (err) {
       setError('Failed to search recipes. Please try again.');
-      console.error('Search error:', err);
     } finally {
       setLoading(false);
     }
