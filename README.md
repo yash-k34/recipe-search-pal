@@ -34,6 +34,10 @@ npm i
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
+
+# If code is not run so, first delete packages. Lock file and nod-moduals and again commands run
+
+# npm i and next npm run dev
 ```
 
 **Edit a file directly in GitHub**
